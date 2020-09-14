@@ -1,4 +1,4 @@
-# English proficiency
+# Creating an English proficiency test using a decision tree
 ## Overview
 This project attempts to build a functional English proficiency test from a sparse dataset consisting of user interactions with multiple choice questions. It began by exploring and refining the available data, moved on to proving that a machine learning model can predict proficiency based on that data, then culminated (for the purposes of this repository) in the deployment of a [Web application](https://mln-alpha.web.app/).
 
