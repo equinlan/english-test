@@ -1,0 +1,21 @@
+<div id="container">
+    <div id="instructions">Choose the <em>more correct or natural</em> English word or phrase.</div>
+    <div id="timer">
+        <mat-progress-spinner color="accent" [value]="timerValue$ | async" diameter="64" strokeWidth="16"></mat-progress-spinner>
+        <mat-icon color="accent">alarm</mat-icon>
+    </div>
+    <div class="challenge-option">
+        <button
+            mat-raised-button
+            (click)="onAnswer(randomState == 0)"
+            [innerHTML]="randomState == 0 ? (correctHtml$ | async) : (incorrectHtml$ | async)">
+        </button>
+    </div>
+    <div class="challenge-option">
+        <button
+            mat-raised-button
+            (click)="onAnswer(randomState != 0)"
+            [innerHTML]="randomState != 0 ? (correctHtml$ | async) : (incorrectHtml$ | async)">
+        </button>
+    </div>
+</div>

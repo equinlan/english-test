@@ -1,0 +1,8 @@
+<div class="center">
+    <div *ngIf="currentChallengeInfo$ | async as currentChallengeInfo; else loading">
+        <app-bucket
+            [wieItems]="currentChallengeInfo.wieItems"
+            (completed)="onAnswered(currentChallengeInfo, $event)"></app-bucket>
+    </div>
+    <ng-template #loading><mat-spinner></mat-spinner></ng-template>
+</div>

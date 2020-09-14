@@ -1,0 +1,28 @@
+<div id="container">
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>My Language Number</span>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav>
+            <mat-nav-list (click)="sidenav.close()">
+                <a mat-list-item routerLink="">
+                    <mat-icon>home</mat-icon>
+                    <span>Home</span>
+                </a>
+                <a mat-list-item routerLink="about">
+                    <mat-icon>info</mat-icon>
+                    <span>About</span>
+                </a>
+                <a *ngIf="!(userIsAnonymous$ | async)" mat-list-item (click)="onSignOut()">
+                    Sign Out
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

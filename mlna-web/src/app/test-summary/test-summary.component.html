@@ -1,0 +1,8 @@
+<div *ngIf="gaveFeedback" id="container" class="center column translucent-box">
+    <h1>Test complete.</h1>
+    <p>Finished in under {{testMinutes}} minute{{testMinutes > 1 ? 's' : ''}}.</p>
+    <p>Your estimated Language Number:</p>
+    <p id="score">{{score | number:'1.0-0'}}</p>
+    <p>This is on a scale of <strong>20-120</strong>. Please remember these results are experimental.</p>
+    <p><a routerLink="/">Home</a></p>
+</div>

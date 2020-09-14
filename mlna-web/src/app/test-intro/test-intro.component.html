@@ -1,0 +1,11 @@
+<div id="container" class="center translucent-box">
+    <h1>Take a quick English proficiency test.</h1>
+    <div id="time">
+        <mat-icon>schedule</mat-icon>
+        <span>usually within 10 minutes</span>
+    </div>
+    <div class="v-margin">
+        <app-test-starter [testIds]="tests" action="Start"></app-test-starter>
+    </div>
+    <div><a routerLink="/about">Learn more</a></div>
+</div>

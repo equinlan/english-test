@@ -1,0 +1,48 @@
+$breakpoint-horizontal: 512px;
+$breakpoint-vertical: 768px;
+
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 512px;
+    width: 384px;
+}
+
+#instructions {
+    font-size: x-large;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#timer {
+    flex-grow: 2;
+    position: relative;
+}
+
+.challenge-option {
+    width: 100%;
+    flex-grow: 2;
+    margin: 16px 0 16px 0;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    font-size: x-large;
+    white-space: normal;
+}
+
+mat-progress-spinner, mat-icon {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (min-width: $breakpoint-horizontal) {
+    #container {
+        height: 384px;
+        width: 512px;
+    }
+}

@@ -1,0 +1,21 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+mat-icon {
+    margin-right: 4px;
+}
+
+mat-sidenav {
+    min-width: 256px;
+}
+
+mat-sidenav-container {
+    flex-grow: 1;
+}
+
+mat-sidenav-content {
+    background-image: url("/assets/double-bubble-outline/double-bubble-outline.png");
+}

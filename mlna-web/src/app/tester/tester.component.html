@@ -1,0 +1,14 @@
+<div class="center">
+    <div *ngIf="completed else test">
+        <app-test-summary [score]="perfect() ? 120 : scoreTotal / scores.length" [testTime]="endTime - startTime"></app-test-summary>
+    </div>
+    <ng-template #test>
+        <div *ngIf="currentTestId && readInstructions else loading">
+            <app-proctor
+                [testId]="currentTestId"
+                (completed)="onCompleted($event)">
+            </app-proctor>
+        </div>
+        <ng-template #loading><mat-spinner *ngIf="readInstructions"></mat-spinner></ng-template>
+    </ng-template>
+</div>

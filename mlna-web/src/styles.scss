@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+$breakpoint-horizontal: 512px;
+$breakpoint-vertical: 768px;
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: url("/assets/spikes/spikes.png");
+}
+
+.h-center {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.v-margin {
+    margin: 32px 0 32px 0;
+}
+
+.center {
+    margin: 32px 0 32px 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.column {
+    max-width: 512px;
+}
+
+.translucent-box {
+    background: rgb(255, 255, 255, 0.8);
+    padding: 16px 32px 16px 32px;
+    border: 1px solid lightgray;
+}
+
+@media (min-height: $breakpoint-vertical) {
+    .center {
+        margin: 0;
+        top: 40%;
+        transform: translate(-50%, -40%);
+    }
+}

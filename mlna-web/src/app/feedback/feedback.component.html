@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Almost Done</h2>
+<mat-dialog-content>
+    <div>
+        <span>Next we will show your score. Before we do, any comments for us?</span>
+        <br>
+        <mat-form-field appearance="standard">
+            <mat-label>Comments</mat-label>
+            <textarea matInput [(ngModel)]="comment"></textarea>
+            <mat-hint>Comments</mat-hint>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+<button mat-raised-button [mat-dialog-close]="comment" color="primary">Submit</button>
+</mat-dialog-actions>
