@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./test-starter.component.scss']
 })
 export class TestStarterComponent implements OnInit {
-  @Input() testIds: string[];
   @Input() action: string;
   currentUser$: Observable<firebase.User>;
 
@@ -24,7 +23,7 @@ export class TestStarterComponent implements OnInit {
 
   onStart(): void {
     // Navigate to test view
-    this.router.navigateByUrl('/test', { state: { testIds: this.testIds } });
+    this.router.navigateByUrl('/test');
   }
 
 }

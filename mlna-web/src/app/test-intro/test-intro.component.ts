@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TestsService } from '../tests.service';
 
 @Component({
   selector: 'app-test-intro',
@@ -7,12 +6,10 @@ import { TestsService } from '../tests.service';
   styleUrls: ['./test-intro.component.scss']
 })
 export class TestIntroComponent implements OnInit {
-  tests: string[];
 
-  constructor(private testsService: TestsService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.tests = this.testsService.getTests();
   }
 
 }

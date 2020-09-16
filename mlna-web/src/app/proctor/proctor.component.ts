@@ -25,7 +25,6 @@ type ChallengeInfo = {
   styleUrls: ['./proctor.component.scss']
 })
 export class ProctorComponent implements OnInit, OnChanges {
-  @Input() testId: string;
   @Output() completed = new EventEmitter<number>();
   currentChallengeInfo$: Observable<ChallengeInfo>;
   attempt: Attempt;
@@ -39,11 +38,11 @@ export class ProctorComponent implements OnInit, OnChanges {
     private auth: AngularFireAuth
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    this.createAttempt();
   }
 
   ngOnChanges(): void {
-    this.createAttempt();
   }
 
   createAttempt(): void {
@@ -51,7 +50,7 @@ export class ProctorComponent implements OnInit, OnChanges {
     this.auth.user
     .pipe(
       filter(user => user != null),
-      switchMap(user => this.attemptsService.create(this.testId, !user.isAnonymous))
+      switchMap(user => this.attemptsService.create(!user.isAnonymous))
     )    
     .subscribe(
       attempt => {
@@ -73,7 +72,7 @@ export class ProctorComponent implements OnInit, OnChanges {
 
   bucketChallenge(nodeId: string): void {
     // Get current node
-    const currentNode$ = this.testNodesService.find(this.testId, nodeId);
+    const currentNode$ = this.testNodesService.find(nodeId);
     currentNode$.subscribe(currentNode => {
       // Update attempt score
       this.attempt.score = currentNode.value;
@@ -88,7 +87,7 @@ export class ProctorComponent implements OnInit, OnChanges {
       }
 
       // Save updated attempt
-      this.attemptsService.update(this.testId, this.attempt.id, this.attempt);
+      this.attemptsService.update(this.attempt.id, this.attempt);
     });
     
     // Get current WIE items
@@ -109,7 +108,7 @@ export class ProctorComponent implements OnInit, OnChanges {
         let node = info[0];
         let wieItems = info[1];
         let wieItemIds = wieItems.map(item => item.id);
-        return this.challengesService.create(this.testId, this.attempt.id, node.value, wieItemIds);
+        return this.challengesService.create(this.attempt.id, node.value, wieItemIds);
       })
     )
 
@@ -134,7 +133,6 @@ export class ProctorComponent implements OnInit, OnChanges {
     
     // Save updated challenge
     this.challengesService.update(
-      this.testId,
       this.attempt.id,
       challengeInfo.challenge.id,
       challengeInfo.challenge);

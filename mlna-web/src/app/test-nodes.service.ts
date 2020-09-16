@@ -1,26 +1,30 @@
-import { Injectable, assertPlatform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { TestNode } from './test-node';
 import { Observable } from 'rxjs';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestNodesService {
-  testsCollection: AngularFirestoreCollection<TestNode>;
+  test$: Observable<any>;
 
-  constructor(private afs: AngularFirestore) {
-    this.testsCollection = afs.collection('tests');
+  constructor(private http: HttpClient) {
+    this.test$ = this.http.get('assets/node_data.json');
   }
 
-  find(testId: string, nodeId: string): Observable<TestNode> {
-    return this.testsCollection
-      .doc(testId)
-      .collection('nodes')
-      .doc<TestNode>(nodeId)
-      .valueChanges()
+  find(nodeId: string): Observable<TestNode> {
+    return this.test$
       .pipe(
+        map((nodesJSON: string) => {
+          let data = <TestNode>nodesJSON[nodeId];
+          return data;
+        }),
+        map(node => <TestNode>{
+          id: nodeId,
+          ...node
+        }),
         take(1)
       );
   }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommentsService } from '../comments.service';
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AnswersService } from '../answers.service';
 
 @Component({
   selector: 'app-test-summary',
@@ -19,7 +20,8 @@ export class TestSummaryComponent implements OnInit, OnChanges {
   constructor(
     public dialog: MatDialog,
     private commentsService: CommentsService,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private answersService: AnswersService
   ) { }
 
   ngOnChanges(): void {
@@ -27,7 +29,11 @@ export class TestSummaryComponent implements OnInit, OnChanges {
   }
   
   ngOnInit(): void {
+    // Show comments dialog
     this.openDialog();
+
+    // Clear answer history
+    this.answersService.reset();
   }
 
   openDialog(): void {

@@ -18,7 +18,10 @@ export class AttemptsService {
     this.testsCollection = afs.collection('tests');
   }
 
-  create(testId: string, cheating: boolean = false): Observable<Attempt> | Observable<never> {
+  create(cheating: boolean = false): Observable<Attempt> | Observable<never> {
+    // Set test id
+    let testId: string = "test_0";
+    
     // Start attempt
     let newAttempt;
     return this.auth.user
@@ -39,7 +42,10 @@ export class AttemptsService {
     )
   }
 
-  update(testId: string, attemptId: string, data: Attempt): void {
+  update(attemptId: string, data: Attempt): void {
+    // Set test id
+    let testId: string = "test_0";
+
     // Work on a copy of data
     let editedAttempt = <Attempt>{ ...data };
 

@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WieItem } from './wie-item';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
-import * as firebase from 'firebase/app';
+import { map, take } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WieItemsService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private http: HttpClient) { }
 
   find(wieItemIds: string[]): Observable<WieItem[]> {
-    return this.afs.collection<WieItem>('wie_items', ref => ref.where(firebase.firestore.FieldPath.documentId(), 'in', wieItemIds))
-    .snapshotChanges()
+    return this.http.get('assets/item_data.json')
     .pipe(
-      map(items => {
-        return <[WieItem]>items.map(item => <WieItem>{
-          id: item.payload.doc.id,
-          ...item.payload.doc.data()
-        });
-      })
+      map((itemsJSON: string) => {
+        let items = itemsJSON;
+        let output: WieItem[] = [];
+        for (let i = 0; i < wieItemIds.length; i++) {
+          output.push(<WieItem>{
+            id: wieItemIds[i],
+            ...items[wieItemIds[i]]
+          })
+        }
+        return output;
+      }),
+      take(1)
     );
   }
 }

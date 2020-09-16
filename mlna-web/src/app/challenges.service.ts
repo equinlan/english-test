@@ -15,7 +15,11 @@ export class ChallengesService {
     this.testsCollection = afs.collection('tests');
   }
 
-  create(testId: string, attemptId: string, score: number, wieItemIds: string[]): Observable<Challenge> {
+  create(attemptId: string, score: number, wieItemIds: string[]): Observable<Challenge> {
+    // Set test id
+    let testId: string = "test_0";
+
+    // Create new challenge
     let newChallenge = new Challenge(score, wieItemIds);
     return from(this.afs
         .collection('tests')
@@ -35,11 +39,13 @@ export class ChallengesService {
   }
 
   update(
-    testId: string,
     attemptId: string,
     challengeId: string,
     data: Challenge
   ): void {
+    // Set test id
+    let testId: string = "test_0";
+
     // Work on a copy of data
     let editedChallenge = <Challenge>{ ...data };
 
