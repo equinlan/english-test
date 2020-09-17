@@ -91,6 +91,7 @@ export class ChallengeComponent implements OnInit, OnChanges {
     window.clearInterval(this.timerInterval);
     
     // Report answer
+    console.log(correct);
     this.answersService.save(this.wieItem.id, correct);
 
     // Report completion

@@ -23,9 +23,6 @@ export class AnswersService {
   perfect(reset: boolean = true): boolean {
     // Was every answer correct?
     return Object.values(this.wieItemIdsAnswers).every(answer => answer);
-
-    // Clear answers
-    if (reset) this.reset();
   }
 
   reset(): void {
