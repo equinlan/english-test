@@ -110,6 +110,8 @@ _NOTE: `first_encounters.csv` has to be extracted from [`first_encounters.zip`](
 ### Web Application
 The [`mlna-web`](mlna-web) directory contains the Angular application that deploys the test.
 
+The reformatted tree nodes and question data can be found in [`mlna-web/src/assets`](mlna-web/src/assets) as [`node_data.json`](mlna-web/src/assets/node_data.json) and [`item_data.json`](mlna-web/src/assets/item_data.json), respectively.
+
 ## Acknowledgements
 Data for this project was provided by [Transparent Language](https://www.transparent.com/). _Which Is English?_ items were authored asynchronously by multiple authors employed by Transparent Language. Special thanks to Michael Quinlan, President and CEO, for giving me the opportunity to pretend to be a real-life data scientist for a bit.
 
